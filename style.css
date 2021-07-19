@@ -2,6 +2,7 @@
 
 body{
     font-family:"Gilroy" ;
+    background-color: #0077b6;
 }
 
 #interface{
@@ -9,7 +10,6 @@ body{
     max-width: 500px;
     min-height: 200px;
     margin: auto;
-    background-color: #0077b6;
     text-align: center;
     padding: 2rem 1rem;
     color: white;
