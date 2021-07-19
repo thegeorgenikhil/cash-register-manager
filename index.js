@@ -18,6 +18,7 @@ var returnTable = document.querySelector("#return-table")
 nextBtn.addEventListener("click",clickHandlerNext)
 checkBtn.addEventListener("click",clickHandlerCheck)
 
+var list = [2000,500,100,20,10,5,1]
 
 
 function clickHandlerNext(){
@@ -31,19 +32,38 @@ function clickHandlerNext(){
 }
 
 function clickHandlerCheck(){
-    billAmountValue = billAmount.value;
-    cashGivenValue = cashGiven.value;
+    var billAmountValue = billAmount.value;
+    var cashGivenValue = cashGiven.value;
+    var balanceAmt = cashGivenValue - billAmountValue;
+    console.log("clicked")
+    for (var i = 0;i < list.length ; i++){
+        var element = list[i];
+        var currentDenomination = document.getElementById(element);
+        currentDenomination.innerText = ""
+        returnTable.classList.add("hidden")
+        }
+
     
     if (cashGivenValue.length === 0 || billAmountValue.length == 0){
         resultDiv.innerText = "Enter valid bill amount and cash given to continue";
     }
-    else if (billAmountValue > cashGivenValue){
+    else if (balanceAmt < 0){
         resultDiv.innerText = "Cash is less than bill, please enter right amount"
     }
     else if (billAmountValue === cashGivenValue){
         resultDiv.innerText = "No amount should be returned"
     }
     else{
-        returnTable.classList.remove("hidden")
+        for (var i = 0;i < list.length ; i++){
+            var element = list[i];
+            if (balanceAmt >= element){
+                var noOfNote = Math.floor(balanceAmt/element);
+                balanceAmt = balanceAmt - (noOfNote*element)
+                var currentDenomination = document.getElementById(element);
+                currentDenomination.innerText = noOfNote
+                returnTable.classList.remove("hidden")
+            }
+
+        }
     }
 }
