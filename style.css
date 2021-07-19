@@ -1,7 +1,7 @@
-@import url(//db.onlinewebfonts.com/c/1dc8ecd8056a5ea7aa7de1db42b5b639?family=Gilroy);
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 body{
-    font-family:"Gilroy" ;
+    font-family: 'Poppins', sans-serif;
     background-color: #0077b6;
 }
 
