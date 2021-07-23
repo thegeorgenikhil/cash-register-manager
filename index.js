@@ -10,6 +10,7 @@ var checkBtn = document.querySelector("#check-Btn")
 var cashGivenDiv = document.querySelector(".cash-given")
 var billAmountNotValidDiv = document.querySelector("#bill-amount-not-valid")
 var resultDiv = document.querySelector("#result")
+var errorOutputDiv = document.querySelector("#error-output")
 
 // TABLE
 var returnTable = document.querySelector("#return-table")
@@ -35,33 +36,33 @@ function clickHandlerCheck(){
     var billAmountValue = billAmount.value;
     var cashGivenValue = cashGiven.value;
     var balanceAmt = cashGivenValue - billAmountValue;
-    console.log("clicked")
-    for (var i = 0;i < list.length ; i++){
-        var element = list[i];
-        var currentDenomination = document.getElementById(element);
-        currentDenomination.innerText = ""
-        returnTable.classList.add("hidden")
-        }
-
+    returnTable.classList.add("hidden")
+    errorOutputDiv.classList.add("hidden")
     
     if (cashGivenValue.length === 0 || billAmountValue.length == 0){
-        resultDiv.innerText = "Enter valid bill amount and cash given to continue";
+        errorOutputDiv.innerHTML = "Enter valid bill amount and cash given to continue";
+        errorOutputDiv.classList.remove("hidden");
     }
     else if (balanceAmt < 0){
-        resultDiv.innerText = "Cash is less than bill, please enter right amount"
+        errorOutputDiv.innerHTML = "Cash is less than bill, please enter right amount";
+        errorOutputDiv.classList.remove("hidden");
+
     }
-    else if (billAmountValue === cashGivenValue){
-        resultDiv.innerText = "No amount should be returned"
+    else if (balanceAmt === 0){
+        errorOutputDiv.innerHTML = "No amount should be returned";
+        errorOutputDiv.classList.remove("hidden");
+
     }
-    else{
-        for (var i = 0;i < list.length ; i++){
+    else if (balanceAmt > 0){
+        for (var i = 0;i < 7 ; i++){
             var element = list[i];
+            var currentDenomination = document.getElementById(element);
+            currentDenomination.innerHTML = "";
             if (balanceAmt >= element){
                 var noOfNote = Math.floor(balanceAmt/element);
-                balanceAmt = balanceAmt - (noOfNote*element)
-                var currentDenomination = document.getElementById(element);
-                currentDenomination.innerText = noOfNote
-                returnTable.classList.remove("hidden")
+                balanceAmt = balanceAmt - (noOfNote*element);
+                currentDenomination.innerHTML = noOfNote;
+                returnTable.classList.remove("hidden");
             }
 
         }

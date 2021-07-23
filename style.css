@@ -15,7 +15,6 @@ body{
     color: white;
 }
 
-
 td{
     width: 100px;
     height: 50px;
@@ -25,8 +24,6 @@ td{
 .hidden{
     display: none;
 }
-
-
 
 .button{
     display: block;
