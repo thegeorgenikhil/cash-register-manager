@@ -34,6 +34,7 @@ td{
     border: none;
     background-color: #023e8a;
     color: white;
+    cursor: pointer;
 }
 
 .input-box{
